@@ -1,6 +1,6 @@
 # Portafolio
 
-##Estructura de carpetas de mi portafolio:
+## Estructura de carpetas de mi portafolio:
 
 Durán_Rafael  
   - └📁Anexos  

@@ -2,17 +2,7 @@
 
 ## Estructura de carpetas de mi portafolio:
 
-Durán_Rafael  
-  - └📁Anexos  
-    - └📁EjerciciosDomiciliarios  
-  - └📁Evaluación del aprendizaje  
-    - Evaluación del aprendizaje.txt  
-  - └📁Evidencias del aprendizaje  
-    - Evidencias de aprendizaje.txt  
-  - └📁Objetivos de mi aprendizaje  
-    - Objetivos de mi aprendizaje.txt  
-  - └📁Reflexiones sobre el aprendizaje  
-    - Reflexiones sobre el aprendizaje.txt  
-  - └📁Relevancia del aprendizaje  
-    - Relevancia del aprendizaje.txt  
+-Ejercicios domiciliarios 1:
+Desarrollé algoritmos para calcular la altura, el tamaño, la cantidad de hojas, la cantidad de nodos internos, cantidad de nodos completos y los nodos por nivel de un árbol binario de búsqueda.
+Se realizaron casos de prueba en el main que coinciden con el boceto del árbol binario realizado en un archivo txt.
 

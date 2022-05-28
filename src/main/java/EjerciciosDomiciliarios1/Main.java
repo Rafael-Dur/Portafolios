@@ -37,5 +37,4 @@ public class Main {
         System.out.println("Nodos en nivel 2: " + abb.enNivel(2));
 
     }
-        
 }

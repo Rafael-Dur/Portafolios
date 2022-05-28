@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package EjerciciosDomiciliarios1;
+package EjerciciosDomiciliarios2;
 
 import static java.lang.Integer.max;
 
@@ -78,118 +78,100 @@ public class TNodoABB<T> {
         }
         return correcto;
     }
-
-    //Parte 1:
+    
     public int altura() {
 
         int alturaIzquierda = 0;
         int alturaDerecha = 0;
 
-        if(this.izq == null && this.der == null){
+        if (this.izq == null && this.der == null) {
             return 0;
-        }
-        else{
+        } else {
             if (this.izq != null) {
                 alturaIzquierda = izq.altura();
             }
             if (this.der != null) {
                 alturaDerecha = der.altura();
-            }            
+            }
         }
         return max(alturaIzquierda, alturaDerecha) + 1;
     }
-    
-    //Parte 2:
-    public int tamanio() {
 
-        int cantIzq = 0;
-        if (izq != null) {
-            cantIzq = izq.tamanio();
+    //Parte 1:
+    public TNodoABB claveMenor() {
+        TNodoABB resultado = this;
+        if (this.izq != null) {
+            resultado = this.izq.claveMenor();
         }
-        int cantDer = 0;
-        if (der != null) {
-            cantDer = der.tamanio();
+        return resultado;
+    }
+
+    //Parte 2:
+    TNodoABB claveMayor() {
+        TNodoABB resultado = this;
+        if (this.der != null) {
+            resultado = this.der.claveMayor();
         }
-        return cantDer + cantIzq + 1;
+        return resultado;
     }
 
     //Parte 3:
-    public int hojas() {
-        int cantIzq = 0;
+    public void listaDeHojas(int nivel, Lista<String> resultado) {
+        INodo<String> nodo = new Nodo<String>(etiqueta, etiqueta + "-" + nivel);
+        resultado.insertar((Nodo<String>) nodo);
         if (izq != null) {
-            cantIzq = izq.hojas();
+            izq.listaDeHojas(nivel - 1, resultado);
         }
-        int cantDer = 0;
-        if (der != null) {
-            cantDer = der.hojas();
-        }
-        int cantidad = cantDer + cantIzq;
-        if (esHoja()) {
-            cantidad++;
-        }
-        return cantidad;
-    }
 
-    private boolean esHoja() {
-        return izq == null && der == null;
+        if (der != null) {
+            der.listaDeHojas(nivel - 1, resultado);
+        }
+
     }
 
     //Parte 4:
-    int internos() {
-        int cantIzq = 0;
-        int cantDer = 0;
-
+    public boolean esABB() {
+        boolean verificadorIzq = true;
+        boolean verificadorDer = true;
         if (izq != null) {
-            cantIzq = izq.internos();
+            if (this.etiqueta.compareTo(izq.getEtiqueta()) < 0) {
+                verificadorIzq = false;
+            } else {
+                verificadorIzq = izq.esABB();
+            }
         }
         if (der != null) {
-            cantDer = der.internos();
+            if (this.etiqueta.compareTo(der.getEtiqueta()) > 0) {
+                verificadorDer = false;
+            } else {
+                verificadorDer = der.esABB();
+            }
         }
-        int cantidadInternos = cantIzq + cantDer;
-        if (!esHoja()) {
-            cantidadInternos ++;
-        }
-        return cantidadInternos;
-
+        return verificadorDer && verificadorIzq;
     }
 
     //Parte 5:
-    int completos() {
-        int cantIzq = 0;
-        int cantDer = 0;
+    public TNodoABB anterior(Comparable comparable) {
 
-        if (izq != null) {
-               cantIzq = izq.completos();
-        }
-        
-        if (der != null) {
-               cantDer = der.completos();
-        }
-        int cantidadCompletos = cantIzq + cantDer;
-        if (izq != null && der != null){
-            cantidadCompletos ++;
-        }
-        return cantidadCompletos;
-    }
-
-    //Parte 6:
-    int enNivel(int nivel) {
-        int cantIzq = 0;
-        int cantDer = 0;
-        
-        if(nivel == 0){
-            return 1;
-        } 
-        else{  
-            if(izq != null){
-                cantIzq = izq.enNivel(nivel - 1);
+        TNodoABB resultado = null;
+        if (this.etiqueta.compareTo(comparable) > 0) {
+            if (this.izq != null) {
+                if (this.izq.getEtiqueta().equals(comparable)) {
+                    resultado = this;
+                } else {
+                    resultado = this.izq.anterior(comparable);
+                }
             }
+        } else {
 
-            if(der != null){
-                cantDer = der.enNivel(nivel -1);
-            }   
+            if (this.der != null) {
+                if (this.der.getEtiqueta().equals(comparable)) {
+                    resultado = this;
+                } else {
+                    resultado = this.der.anterior(comparable);
+                }
+            }
         }
-        int cantidad = cantIzq + cantDer;
-        return cantidad;
-    } 
+        return resultado;
+    }
 }

@@ -1,4 +1,4 @@
-package segundo_parcial;
+package EjerciciosDomiciliarios2;
 
 public interface INodo<T> {
 
@@ -22,15 +22,19 @@ public interface INodo<T> {
      */
     public void setSiguiente(Nodo<T> nodo);
     
+    /**
+     * Imprime los datos del nodo
+     */
     
+    
+    
+    public void imprimir();
 
     /**
      * Imprime la etiqueta del nodo
      */
     
-    public String imprimirEtiqueta();
-
-    
+    public void imprimirEtiqueta();
 
     
     /**

@@ -1,41 +1,28 @@
-package segundo_parcial;
+package EjerciciosDomiciliarios2;
 
 public class Lista<T> implements ILista<T> {
 
-    private Nodo<T> primero;
+    private Nodo<T> primero = null;
 
     public Lista() {
         primero = null;
     }
-
-
-    @Override
-    public void insertar(Nodo<T> unNodo) {
-        if (esVacia()) {
-            primero = unNodo;
-        } else {
-            Nodo<T> aux = primero;
-            while (aux.getSiguiente() != null) {
-                aux = aux.getSiguiente();
-            }
-            aux.setSiguiente(unNodo);
-        }
-    }
-
+    
     @Override
     public Nodo<T> buscar(Comparable clave) {
-        if (esVacia()) {
-            return null;
-        } else {
-            Nodo<T> aux = primero;
-            while (aux != null) {
-                if (aux.getEtiqueta().equals(clave)) {
-                    return aux;
-                }
-                aux = aux.getSiguiente();
+        Nodo<T> aux = primero;
+        while (aux != null) {
+            if (aux.getEtiqueta().equals(clave.toString())) {
+                return aux;
             }
+            aux = aux.getSiguiente();
         }
         return null;
+    }
+
+
+    public boolean esVacio(){
+        return this.primero == null;
     }
 
     @Override
@@ -68,17 +55,14 @@ public class Lista<T> implements ILista<T> {
         }
         return false;
     }
-
+    
     @Override
     public String imprimir() {
         String aux = "";
         if (!esVacia()) {
             Nodo<T> temp = primero;
-            while (temp != null) {
-                temp.imprimirEtiqueta();
-                temp = temp.getSiguiente();
+            temp.imprimirEtiqueta();
             }
-        }
         return aux;
     }
 
@@ -93,12 +77,10 @@ public class Lista<T> implements ILista<T> {
                 aux = aux + separador + temp.getSiguiente().getEtiqueta();
                 temp = temp.getSiguiente();
             }
-
         }
         return aux;
-
     }
-
+   
     @Override
     public int cantElementos() {
         int contador = 0;
@@ -120,6 +102,7 @@ public class Lista<T> implements ILista<T> {
         return primero == null;
     }
 
+    @Override
     public Nodo<T> getPrimero() {
         return primero;
     }
@@ -127,5 +110,15 @@ public class Lista<T> implements ILista<T> {
     @Override
     public void setPrimero(Nodo<T> unNodo) {
         this.primero = unNodo;
+    }
+
+    @Override
+    public void insertar(Nodo<T> nodo) {
+        if (esVacio()) {
+            primero = nodo;
+        } else {
+            nodo.setSiguiente(primero);
+            primero = nodo;
+        }
     }
 }

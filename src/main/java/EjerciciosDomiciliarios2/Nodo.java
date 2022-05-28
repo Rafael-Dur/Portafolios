@@ -1,10 +1,5 @@
-package segundo_parcial;
+package EjerciciosDomiciliarios2;
 
-/**
- *
- * @author ernesto
- * @param <T>
- */
 public class Nodo<T> implements INodo<T> {
 
     private final Comparable etiqueta;
@@ -16,7 +11,6 @@ public class Nodo<T> implements INodo<T> {
         this.dato = dato;
     }
 
-    @Override
     public T getDato() {
         return this.dato;
     }
@@ -31,11 +25,14 @@ public class Nodo<T> implements INodo<T> {
         return this.etiqueta;
     }
 
-   
+    @Override
+    public void imprimir() {
+        System.out.println(dato.toString());
+    }
 
     @Override
-    public String imprimirEtiqueta() {
-        return (this.etiqueta.toString());
+    public void imprimirEtiqueta() {
+        System.out.println(this.etiqueta);
     }
 
     public Nodo<T> clonar() {
@@ -48,7 +45,10 @@ public class Nodo<T> implements INodo<T> {
      * @return
      */
 
-    
+    public boolean equals(Nodo unNodo) {
+        return this.dato.equals(unNodo.getDato());
+    }
+
     @Override
     public int compareTo(Comparable etiqueta) {
         return this.etiqueta.compareTo(etiqueta);
@@ -64,5 +64,4 @@ public class Nodo<T> implements INodo<T> {
         this.siguiente = nodo;
     }
 
-    
 }

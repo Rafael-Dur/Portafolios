@@ -32,3 +32,6 @@ En otras palabras, un árbol binario de búsqueda es un árbol binario que cumpl
 Desarrollé algoritmos para calcular la altura, el tamaño, la cantidad de hojas, la cantidad de nodos internos, cantidad de nodos completos y los nodos por nivel de un árbol binario de búsqueda.
 Se realizaron casos de prueba en el main que coinciden con el boceto del árbol binario realizado en un archivo txt.
 
+* **Ejercicios domiciliarios 2:**
+
+Desarrollé algoritmos para obtener nodos con la clave menor y la clave mayor de un árbol, para obtener una lista de todas las hojas del árbol (listadas con su nivel correspondiente), para verificar si un árbol es o no de búsqueda y finalmente para obtener la clave inmediata anterior a una clave pasada por parámetro. 

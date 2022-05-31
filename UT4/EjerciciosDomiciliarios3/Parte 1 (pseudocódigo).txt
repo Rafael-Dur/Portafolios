@@ -1,0 +1,35 @@
+
+ TArbolBB.obtenerConsultasDelDia(String fecha): TArbolBB<Afiliado>
+ 
+ COMIENZO
+ 
+	TArbolBB<Afiliado> resultado = null;
+	 
+	SI (raiz != null)
+		resultado.setRaiz(raiz.obtenerConsultasDelDia(fecha));
+	 FINSI
+ DEVOLVER resultado;
+ FIN
+ 
+ 
+ TNodoABB.obtenerConsultasDelDia(String fecha): TNodoBB<Afiliado>
+ 
+ COMIENZO
+ 
+	TNodoBB<Afiliado> resultado = null;
+	 
+	SI (raiz != null)
+		SI (izq!=null)
+			resultado=this.izq.obtenerConsultasDelDia(fecha)
+		SI (der!=null)
+			SI(resultado!=null)
+				resultado.setDer(this.der.obtenerConsultasDelDia(fecha));
+			SINO
+				resultado=this.der.obtenerConsultasDelDia(fecha);
+		
+		SI(this.Afiliado.tieneConsulta(fecha))
+			resultado= new  NodoABB(this.Afiliado);
+		FINSI
+	 FINSI
+ DEVOLVER resultado;
+ 

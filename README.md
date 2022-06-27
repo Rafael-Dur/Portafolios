@@ -48,7 +48,12 @@ Para conseguir esta propiedad de equilibrio, la inserción y el borrado de los n
 
 
 * Ejemplo de árbol no balanceado (no es un AVL):
+
 ![image](https://user-images.githubusercontent.com/69222919/175975236-1c4c6052-2390-4909-9697-997c070a9b2c.png)
+
 * Ejemplo de árbol balanceado (este sí es un AVL)
+
 ![image](https://user-images.githubusercontent.com/69222919/175975265-0ddd7f8f-0b61-4842-9775-d16a4d763d5e.png)
+
+
 

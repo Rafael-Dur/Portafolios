@@ -40,7 +40,7 @@ Desarrollé algoritmos para obtener nodos con la clave menor y la clave mayor de
 ## UT5
 
 
-###Árboles AVL:
+### Árboles AVL:
 
 Los árboles AVL están siempre equilibrados de tal modo que para todos los nodos, la altura de la rama izquierda no difiere en más de una unidad de la altura de la rama derecha o viceversa. Gracias a esta forma de equilibrio (o balanceo), la complejidad de una búsqueda en uno de estos árboles se mantiene siempre en orden de complejidad O(log n). El factor de equilibrio puede ser almacenado directamente en cada nodo o ser computado a partir de las alturas de los subárboles.
 
@@ -48,7 +48,7 @@ Para conseguir esta propiedad de equilibrio, la inserción y el borrado de los n
 
 
 * Ejemplo de árbol no balanceado (no es un AVL):
-![image](https://user-images.githubusercontent.com/69222919/175974555-2269a86b-5595-4de5-b004-df2c75c3ab30.png)
-
+![image](https://user-images.githubusercontent.com/69222919/175975236-1c4c6052-2390-4909-9697-997c070a9b2c.png)
 * Ejemplo de árbol balanceado (este sí es un AVL)
-![image](https://user-images.githubusercontent.com/69222919/175974704-a985d409-411e-4446-be0f-bd01cc8d4a87.png)
+![image](https://user-images.githubusercontent.com/69222919/175975265-0ddd7f8f-0b61-4842-9775-d16a4d763d5e.png)
+

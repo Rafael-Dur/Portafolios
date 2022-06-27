@@ -16,7 +16,8 @@ public class CalculadorMatricesOptimo  {
     public final int[][] W;
     public final int[][] P;
     public final int[][] R;
-    
+    public int[]frecExito;
+    public int[]frecNoExito;
     
 
     public CalculadorMatricesOptimo(int cantElem) {
@@ -28,7 +29,8 @@ public class CalculadorMatricesOptimo  {
 
    
     public void encontrarOptimo(int cantElem, int[] frecExito, int[] frecNoExito) {
-
+        this.frecExito=frecExito;
+        this.frecNoExito=frecNoExito;
         int kraiz = 0;
         
         for (int i = 0; i <= cantElem + 1; i++) {
@@ -87,14 +89,15 @@ public class CalculadorMatricesOptimo  {
      * @param elArbolBB
      */
 
-    public void armarArbolBinario(int i, int j, String[] Claves,TArbolBB elArbolBB) {
+    public void armarArbolBinario(int i, int j, String[] Claves,TArbolBB elArbolBB,long[] valor) {
         
         if(i < j){
             int indiceRaiz = R[i][j];
             TElementoAB elementoAB= new TElementoAB(Claves[indiceRaiz], Claves[indiceRaiz]);
             elArbolBB.insertar(elementoAB);
-            this.armarArbolBinario(i, indiceRaiz-1, Claves, elArbolBB);
-            this.armarArbolBinario(indiceRaiz, j, Claves, elArbolBB);
+            this.armarArbolBinario(i, indiceRaiz-1, Claves, elArbolBB,valor);
+            this.armarArbolBinario(indiceRaiz, j, Claves, elArbolBB,valor);
+           // valor[0]=elementoAB.calcularCosto(frecExito, frecNoExito, indiceFE, indiceFNE, i);
         }
     }
 

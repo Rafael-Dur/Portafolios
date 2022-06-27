@@ -1,6 +1,6 @@
 package ucu.edu.uy.tda;
 
-public class TArbolBB<T>  {
+public class TArbolBB<T> {
 
     private TElementoAB<T> raiz;
 
@@ -17,7 +17,6 @@ public class TArbolBB<T>  {
      * @param unElemento
      * @return
      */
-    
     public boolean insertar(TElementoAB<T> unElemento) {
         if (esVacio()) {
             raiz = unElemento;
@@ -31,7 +30,6 @@ public class TArbolBB<T>  {
      * @param unaEtiqueta
      * @return
      */
-    
     public TElementoAB<T> buscar(Comparable unaEtiqueta) {
 //        if (esVacio())
 //        {
@@ -48,7 +46,6 @@ public class TArbolBB<T>  {
     /**
      * @return recorrida en inorden del arbol, null en caso de ser vacío
      */
-    
     public Lista<T> inOrden() {
         Lista<T> unaLista = new Lista<>();
         if (!esVacio()) {
@@ -60,7 +57,6 @@ public class TArbolBB<T>  {
     /**
      * @return recorrida en preOrden del arbol, null en caso de ser vacío
      */
-   
     public String preOrden() {
 //        if (esVacio())
 //        {
@@ -76,7 +72,6 @@ public class TArbolBB<T>  {
     /**
      * @return recorrida en postOrden del arbol, null en caso de ser vacío
      */
- 
     public String postOrden() {
 //        if (esVacio())
 //        {
@@ -89,7 +84,6 @@ public class TArbolBB<T>  {
         return esVacio() ? null : raiz.postOrden();
     }
 
-    
     public void eliminar(Comparable unaEtiqueta) {
         if (!esVacio()) {
             this.raiz = this.raiz.eliminar(unaEtiqueta);
@@ -106,7 +100,6 @@ public class TArbolBB<T>  {
     /**
      * @return True si habían elementos en el árbol, false en caso contrario
      */
-    
     public boolean vaciar() {
         if (!esVacio()) {
             raiz = null;
@@ -115,7 +108,6 @@ public class TArbolBB<T>  {
         return false;
     }
 
-    
     public int altura() {
 //        if (esVacio())
 //        {
@@ -125,7 +117,6 @@ public class TArbolBB<T>  {
         return esVacio() ? -1 : raiz.altura();
     }
 
-    
     public int tamanio() {
 //        if (esVacio())
 //        {
@@ -135,7 +126,6 @@ public class TArbolBB<T>  {
         return esVacio() ? -1 : raiz.tamanio();
     }
 
-    
     public int nivel(Comparable etiqueta) {
 //        if (esVacio())
 //        {
@@ -145,15 +135,31 @@ public class TArbolBB<T>  {
         return esVacio() ? -1 : raiz.nivel(etiqueta, 0);
     }
 
-    
     public TElementoAB<T> getRaiz() {
         return this.raiz;
     }
 
-    
     public long calcularCosto(int[] frecExito, int[] frecNoExito) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
+        long resultado = -1;
+        int indiceFNE[] = {0};
+        int indiceFE[] = {1};
+        if (this.getRaiz() != null) {
+            resultado = this.getRaiz().calcularCosto(frecExito, frecNoExito, indiceFE, indiceFNE, 0);
+        }
+        return resultado;
+    }
+    
+    public long obtenerCosto(int n,int[]frecuenciaExito,int[]frecuenciaNoExito,int[] h,int[] hprima) {
+        long suma=0;
+        for(int i=0;i<n;i++)
+        {
+           suma+=frecuenciaExito[i] * h[i];
+        }
+        for(int i=0;i<n;i++)
+        {
+           suma+=frecuenciaNoExito[i] * hprima[i];
+        }
+        return suma;
     }
 
     public void completarNodosExternos(int[] vectorBetas) {

@@ -35,3 +35,20 @@ Se realizaron casos de prueba en el main que coinciden con el boceto del árbol 
 * **Ejercicios domiciliarios 2:**
 
 Desarrollé algoritmos para obtener nodos con la clave menor y la clave mayor de un árbol, para obtener una lista de todas las hojas del árbol (listadas con su nivel correspondiente), para verificar si un árbol es o no de búsqueda y finalmente para obtener la clave inmediata anterior a una clave pasada por parámetro. 
+
+
+## UT5
+
+
+###Árboles AVL:
+
+Los árboles AVL están siempre equilibrados de tal modo que para todos los nodos, la altura de la rama izquierda no difiere en más de una unidad de la altura de la rama derecha o viceversa. Gracias a esta forma de equilibrio (o balanceo), la complejidad de una búsqueda en uno de estos árboles se mantiene siempre en orden de complejidad O(log n). El factor de equilibrio puede ser almacenado directamente en cada nodo o ser computado a partir de las alturas de los subárboles.
+
+Para conseguir esta propiedad de equilibrio, la inserción y el borrado de los nodos se ha de realizar de una forma especial. Si al realizar una operación de inserción o borrado se rompe la condición de equilibrio, hay que realizar una serie de rotaciones de los nodos.
+
+
+* Ejemplo de árbol no balanceado (no es un AVL):
+![image](https://user-images.githubusercontent.com/69222919/175974555-2269a86b-5595-4de5-b004-df2c75c3ab30.png)
+
+* Ejemplo de árbol balanceado (este sí es un AVL)
+![image](https://user-images.githubusercontent.com/69222919/175974704-a985d409-411e-4446-be0f-bd01cc8d4a87.png)

@@ -251,10 +251,12 @@ public class TElementoAB<T> {
     public long calcularCosto(int[] frecExito, int[] frecNoExito, int[] indiceFE, int[] indiceFNE, int nivel) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
     public void setEtiqueta(Comparable etiqueta)
     {
         this.etiqueta=etiqueta;
     }
+    
     public void completarNodosExternos(int[] vector_betas, Integer[] contador) {
         if (hijoIzq != null) {
             hijoIzq.completarNodosExternos(vector_betas, contador);

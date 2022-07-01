@@ -150,14 +150,14 @@ public class TArbolBB<T> {
     }
     
     public long obtenerCosto(int n,int[]frecuenciaExito,int[]frecuenciaNoExito,int[] h,int[] hprima) {
-        long suma=0;
-        for(int i=0;i<n;i++)
+        long suma = 0;
+        for(int i = 0; i < n; i++)
         {
-           suma+=frecuenciaExito[i] * h[i];
+           suma +=frecuenciaExito[i] * h[i];
         }
-        for(int i=0;i<n;i++)
+        for(int i = 0; i < n; i++)
         {
-           suma+=frecuenciaNoExito[i] * hprima[i];
+           suma += frecuenciaNoExito[i] * hprima[i];
         }
         return suma;
     }

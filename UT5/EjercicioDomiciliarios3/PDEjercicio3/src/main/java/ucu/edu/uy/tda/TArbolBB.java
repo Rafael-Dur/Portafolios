@@ -148,16 +148,24 @@ public class TArbolBB<T> {
         }
         return resultado;
     }
-    
-    public long obtenerCosto(int n,int[]frecuenciaExito,int[]frecuenciaNoExito,int[] h,int[] hprima) {
-        long suma = 0;
-        for(int i = 0; i < n; i++)
-        {
-           suma +=frecuenciaExito[i] * h[i];
+
+    public long obtenerCosto(Comparable clave) {
+        if (this.raiz == null) {
+            return 0;
+        } else {
+            return this.raiz.obtenerCosto(clave);
         }
-        for(int i = 0; i < n; i++)
-        {
-           suma += frecuenciaNoExito[i] * hprima[i];
+    }
+
+    
+    //Otra forma de hacer el método obtenerCosto:
+    public long obtenerCosto2(int n, int[] frecuenciaExito, int[] frecuenciaNoExito, int[] h, int[] hprima) {
+        long suma = 0;
+        for (int i = 0; i < n; i++) {
+            suma += frecuenciaExito[i] * h[i];
+        }
+        for (int i = 0; i < n; i++) {
+            suma += frecuenciaNoExito[i] * hprima[i];
         }
         return suma;
     }

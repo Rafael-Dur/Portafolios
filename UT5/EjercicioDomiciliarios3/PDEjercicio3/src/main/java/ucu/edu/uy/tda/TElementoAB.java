@@ -2,10 +2,11 @@ package ucu.edu.uy.tda;
 
 public class TElementoAB<T> {
 
-    private  Comparable etiqueta;
+    private Comparable etiqueta;
     private TElementoAB hijoIzq;
     private TElementoAB hijoDer;
     private T datos;
+    private long costo;
 
     /**
      * @param unaEtiqueta
@@ -20,7 +21,6 @@ public class TElementoAB<T> {
         return hijoIzq;
     }
 
-  
     public TElementoAB<T> getHijoDer() {
         return hijoDer;
     }
@@ -29,7 +29,6 @@ public class TElementoAB<T> {
      * @param unElemento
      * @return
      */
-    
     public boolean insertar(TElementoAB<T> unElemento) {
         if (unElemento.getEtiqueta().compareTo(etiqueta) < 0) {
             if (hijoIzq != null) {
@@ -55,7 +54,6 @@ public class TElementoAB<T> {
      * @param unaEtiqueta
      * @return
      */
-    
     public TElementoAB<T> buscar(Comparable unaEtiqueta) {
 
         if (unaEtiqueta.equals(etiqueta)) {
@@ -73,7 +71,6 @@ public class TElementoAB<T> {
         }
     }
 
-    
     public void inOrden(Lista<T> unaLista) {
         if (hijoIzq != null) {
             hijoIzq.inOrden(unaLista);
@@ -88,7 +85,6 @@ public class TElementoAB<T> {
     /**
      * @return recorrida en preOrden del subArbol que cuelga del elemento actual
      */
-    
     public String preOrden() {
         StringBuilder tempStr = new StringBuilder();
         tempStr.append(imprimir());
@@ -107,7 +103,6 @@ public class TElementoAB<T> {
      * @return recorrida en postOrden del subArbol que cuelga del elemento
      * actual
      */
-    
     public String postOrden() {
         StringBuilder tempStr = new StringBuilder();
         if (hijoIzq != null) {
@@ -122,7 +117,6 @@ public class TElementoAB<T> {
         return tempStr.toString();
     }
 
-    
     public Comparable getEtiqueta() {
         return etiqueta;
     }
@@ -134,7 +128,6 @@ public class TElementoAB<T> {
         return (etiqueta.toString());
     }
 
-   
     public T getDatos() {
         return datos;
     }
@@ -143,18 +136,15 @@ public class TElementoAB<T> {
         this.datos = datos;
     }
 
-
     public void setHijoIzq(TElementoAB<T> elemento) {
         this.hijoIzq = elemento;
 
     }
 
-  
     public void setHijoDer(TElementoAB<T> elemento) {
         this.hijoDer = elemento;
     }
 
-   
     public TElementoAB<T> eliminar(Comparable unaEtiqueta) {
         if (unaEtiqueta.compareTo(this.getEtiqueta()) < 0) {
             if (this.hijoIzq != null) {
@@ -202,7 +192,6 @@ public class TElementoAB<T> {
         return elHijo;
     }
 
-    
     public int altura() {
         int altIzq = -1;
         int altDer = -1;
@@ -218,7 +207,6 @@ public class TElementoAB<T> {
 
     }
 
-    
     public int tamanio() {
         int tamSubArboles = 0;
         if (this.hijoIzq != null) {
@@ -230,7 +218,6 @@ public class TElementoAB<T> {
         }
         return tamSubArboles + 1;
     }
-
 
     public int nivel(Comparable etiqueta, int nivel) {
         if (this.etiqueta.compareTo(etiqueta) == 0) {
@@ -247,23 +234,96 @@ public class TElementoAB<T> {
         return -1;
     }
 
-    
+    public long getCosto() {
+        return costo;
+    }
+
+    public void setCosto(long costo) {
+        this.costo = costo;
+    }
+
     public long calcularCosto(int[] frecExito, int[] frecNoExito, int[] indiceFE, int[] indiceFNE, int nivel) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
+        long costo = 0;
+        long costoIzq = 0;
+        long costoDer = 0;
+        long costoElemento = 0;
+        if (this.hijoIzq != null) {
+            costoIzq = hijoIzq.calcularCosto(frecExito, frecNoExito, indiceFE, indiceFNE, nivel + 1);
+        } else {
+            costoIzq = frecNoExito[indiceFNE[0]] * (nivel + 1);
+            indiceFNE[0]++;
+        }
+
+        indiceFE[0]++;
+        costo = frecExito[indiceFE[0]] * nivel;
+
+        if (this.hijoDer != null) {
+            costoDer = hijoDer.calcularCosto(frecExito, frecNoExito, indiceFE, indiceFNE, nivel + 1);
+        } else {
+            costoDer = frecNoExito[indiceFNE[0]] * (nivel + 1);
+            indiceFNE[0]++;
+        }
+        costoElemento = costo + costoIzq + costoDer;
+        setCosto(costoElemento);
+        return costoElemento;
     }
     
-    public void setEtiqueta(Comparable etiqueta)
+    public long obtenerCosto(Comparable clave)
     {
-        this.etiqueta=etiqueta;
+        if (this.etiqueta.compareTo(clave) == 0)
+        {
+            return this.costo;
+        }
+        long costoH;
+        if (clave.compareTo(this.etiqueta) < 0)
+        {
+            if (this.hijoIzq != null)
+            {
+                costoH = this.hijoIzq.obtenerCosto(clave);
+                if (costoH != 0){
+                    return (this.costo + costoH);
+                } else {
+                    return 0;
+                }
+                
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        if (clave.compareTo(this.etiqueta) > 0)
+        {
+            if (this.hijoDer != null)
+            {
+                costoH = this.hijoDer.obtenerCosto(clave);
+                if (costoH !=0 ) {
+                    return (this.costo + costoH);
+                } else {
+                    return 0;
+                }
+                
+            }
+            else
+            {
+                return 0;
+            }
+        } 
+        return 0;
     }
-    
+
+    public void setEtiqueta(Comparable etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+
     public void completarNodosExternos(int[] vector_betas, Integer[] contador) {
         if (hijoIzq != null) {
             hijoIzq.completarNodosExternos(vector_betas, contador);
         } else {
             TElementoAB elemento = new TElementoAB("hoja", null);
             elemento.setDatos(vector_betas[contador[0]]);
-            elemento.setEtiqueta("hoja"+elemento.getEtiqueta());
+            elemento.setEtiqueta("hoja" + elemento.getEtiqueta());
             hijoIzq = elemento;
             contador[0]++;
         }
@@ -272,7 +332,7 @@ public class TElementoAB<T> {
         } else {
             TElementoAB elemento = new TElementoAB("hoja", null);
             elemento.setDatos(vector_betas[contador[0]]);
-            elemento.setEtiqueta("hoja"+elemento.getEtiqueta());
+            elemento.setEtiqueta("hoja" + elemento.getEtiqueta());
             hijoDer = elemento;
             contador[0]++;
         }
